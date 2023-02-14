@@ -1,3 +1,5 @@
+<p style="text-align: center;"><img alt="Nowak Digital Solutions logo" src="https://raw.githubusercontent.com/nowak-digital-solutions/kalkulator-ubezpieczeniowy/main/images/nds-logo.png" width="450"></p>
+
 # Kalkulator ubezpieczeń - Dokumentacja
 
 Dokument ten opisuje funkcje oraz instrukcję instalacji formularza ubezpieczeń.
@@ -12,6 +14,57 @@ Operacja jest bardzo prosta i wymaga dodania do kodu HTML strony kilku tagów.
 ```
 
 Klucz agent-id oraz agent-meta są dostarczane po po podpisaniu umowy.
+
+## Pola konfiguracji 
+Formularz przyjmuje kilka parametrów które sterują wyglądem oraz zachowaniem formularza
+
+Aby ustawić pole należy przekazać atrybut do formularza wraz z wartością.
+
+### Dostępne atrybuty
+#### zrodlo
+```html
+<formularz-do-leadow zrodlo="nazwa">
+```
+Źródło formularza dodaje komentarz do kalkulacji, który określa skąd przyszła kalkulacja. Jeśli posiadamy formularz zainstalowany na kilku podstronach lub w innej domenie, możemy podać nazwę, która określi kalkulację.
+
+#### wylacz-domyslne-style
+```html
+<formularz-do-leadow wylacz-domyslne-style="true">
+```
+Domyślna wartość: `false`
+
+Jeśli chcemy aby formularz korzystał tylko ze styli dostarczonych przez stronę. W tym wypadku dodawany jest minimalny zestaw styli, który tylko definiuje loader.
+
+#### wyswietl-dialog
+```html
+<formularz-do-leadow wyswietl-dialog="true">
+```
+Domyślna wartość: `true`
+Jeśli formularz został skonfigurowany tak by nie liczyć składek, atrybut ten określa czy zostanie wyświetlony uzytkownikowi dialog informujący i wysłaniu zapytania. Jeśli agencja chce przekierować użytkowika na inną stronę, z podsumowaniem wtedy należy ustawić atrybut na `false` i gdy przyjdzie zdarzenie `formSubmitted` zrobić przekierowanie.
+
+#### tekst-przycisku-wyslij
+```html
+<formularz-do-leadow tekst-przycisku-wyslij="Oblicz składki">
+```
+Domyślna wartość: `Wyślij`
+
+Ustawia tekst na przycisku.
+
+#### przeladuj-po-wyslaniu
+```html
+<formularz-do-leadow przeladuj-po-wyslaniu="true">
+```
+Domyślna wartość: `false`
+Jeśli formularz ma przeładować stronę po wysłaniu. Lepiej skorzystać z eventu `formSubmitted` i obsłużyć tę akcję we własnym zakresie.
+
+#### pokaz-loader
+```html
+<formularz-do-leadow pokaz-loader="false">
+```
+Domyślna wartość: `true`
+Jeśli chcemy użyć własnego loadera by wygląd był spójny ze stroną, możemy schować domyślny loader. Należy wtedy obsłuzyć dwa zdarzenia (Patrz sekcja na końcu dokumentacji)
+* `loaderHidden`
+* `loaderShowed`
 
 ## Konstrukcja formularza
 
@@ -241,3 +294,6 @@ tym, który jest wykorzystany na stronie.
 
 Pokazano loader
 
+
+# Licencja
+Wyłącznie do użytku przez klientów posiadających umowę na integrację formularza. Własność Nowak Digital Solutions Sp. z o.o.
