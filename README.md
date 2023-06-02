@@ -66,6 +66,15 @@ Jeśli chcemy użyć własnego loadera by wygląd był spójny ze stroną, może
 * `loaderHidden`
 * `loaderShowed`
 
+#### ukryj-opisy-oferty
+```html
+<formularz-do-leadow  ukryj-opisy-oferty="true">
+```
+Domyślna wartość: `false`
+Pozwala ukryć opisy na ofertach 
+
+
+
 ## Konstrukcja formularza
 
 Formularz składa się z dwóch sekcji:
