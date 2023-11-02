@@ -61,10 +61,9 @@ Jeśli formularz ma przeładować stronę po wysłaniu. Lepiej skorzystać z eve
 ```html
 <formularz-do-leadow pokaz-loader="false">
 ```
-Domyślna wartość: `true`
-Jeśli chcemy użyć własnego loadera by wygląd był spójny ze stroną, możemy schować domyślny loader. Należy wtedy obsłuzyć dwa zdarzenia (Patrz sekcja na końcu dokumentacji)
-* `loaderHidden`
-* `loaderShowed`
+Domyślna wartość: `false`
+Ustawienie tej opcji na "true" spowoduje pokazanie na stałe loadera w formularzu. Dzięki temu można będzie poprawić wygląd loadera jeśli nie wyświetla się prawidłowo.
+
 
 #### ukryj-opisy-oferty
 ```html
@@ -135,7 +134,7 @@ atrybut `wylacz-domyslne-style="true"` do głównego taga formularza.
 
 ### Uwaga
 
-Style formularza w większości przypadków dopasowują się dobrze do strony. Należy zwrócić uwagę/zmodyfikować na kilka
+Style formularza w większości przypadków dopasowują się dobrze do strony. Należy zwrócić uwagę na lub zmodyfikować kilka
 elementów:
 
 * kolory oraz ramki przycisków
@@ -187,14 +186,62 @@ pojawia pod kaflami widoczny jest loader.
 
 ```html
 
-<div class="offer-tile">
+<div class="offer-tile" data-insurer="mtu">
+  <div class="logo-placeholder"></div>
   <h2>4 817.18 zł</h2>
-    <p class="description">OC, Assistance: Podstawowy, NNW: 5 000 zł, AC: Kosztorys, Udział własny w szkodzie: 500 zł,
-        Amortyzacja części zamiennych</p>
-  <span>dba5ea62-b27a-4e1f-ad5e-2d6814910b12</span>
+  <p class="description">OC, Assistance: Podstawowy, NNW: 5 000 zł, AC: Kosztorys, Udział własny w szkodzie: 500 zł,
+      Amortyzacja części zamiennych</p>
+  <button>Proszę o kontakt</button>
 </div>
 ```
+
+#### Loga zakładów
 W chwili obecnej nie jest wyświetlane logo TU, z powodu braku zgody wszystkich TU na wyświetlanie oferty na stronach.
+
+Można jednak we własnym zakresie i na własną odpowiedzialność zmodyfikować wygląd kafla z ofertą i dodać do niego np. obraz z logiem. 
+Aby to zrobić należy zastosować odpowiedni selector (przykład tutaj: https://css-tricks.com/almanac/selectors/a/attribute/#aa-the-seven-different-types). 
+
+Domyślnie `<div class="logo-placeholder"></div>` jest ukryty (`display: none;`). Należy go odpowiednio ostylować i dodać url do loga TU. Jeśli nie ma zgody wszystkich to można pokazać tylko te do których zgody są uzyskane.
+Przykładowy CSS:
+```css
+.offer-tile[data-insurer="pzu"] >.logo-placeholder {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/PZU_logo.png/240px-PZU_logo.png);
+}
+.offer-tile > .logo-placeholder {
+  width: 100px!important;
+  right: 0;
+  height: 100px;
+  position: absolute;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+```
+
+Lista dostępnych zakładów:
+* euroins
+* wiener
+* tuz
+* pzu
+* ergo
+* ergo-lite
+* warta
+* hdi
+* mtu
+* ycd
+* balcia
+* generali
+* proama
+* link4
+* uniqa
+* interrisk
+* trasti
+* wefox
+* allianz
+* agro
+* accredited
+* tuw
+* compensa
 
 ## Komunikacja strony z formularzem - zdarzenia
 
